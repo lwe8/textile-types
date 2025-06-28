@@ -1,7 +1,5 @@
 // JSON ML Tree
-export type JsonMLNodes = JsonMLNode[];
-export type JsonMLNode = string | JsonMLElement;
-export interface JsonMLAttributes {
+export interface JMLAttributes {
   [key: string]: string | undefined | Record<string, string | undefined>;
   style?: string;
   lang?: string;
@@ -14,18 +12,20 @@ export interface JsonMLAttributes {
   class?: string;
   id?: string;
 }
-export interface JsonMLElement {
-  0: TagName; // Tag name
-  1?: JsonMLAttributes | JsonMLNode | string; // Optional attributes or first child
-  [index: number]: JsonMLAttributes | JsonMLNode | undefined; // Remaining items are children or undefined
-}
-export interface JsonMLVisitor {
-  visitElement?(
-    node: JsonMLElement,
-    index?: number,
-    parent?: JsonMLNodes
-  ): void;
-  visitText?(node: string, index?: number, parent?: JsonMLNodes): void;
+type JEOne =
+  | JMLAttributes
+  | string
+  | string[]
+  | JMLElement
+  | JMLElement[]
+  | JMLNode
+  | JMLNodes;
+export type JMLElement = [TagName, JEOne, ...JMLNode[]];
+export type JMLNode = string | JMLElement;
+export type JMLNodes = JMLNode[];
+export interface JMLVisitor {
+  visitElement?(node: JMLElement, index?: number, parent?: JMLNodes): void;
+  visitText?(node: string, index?: number, parent?: JMLNodes): void;
 }
 // JSON ML Tree End
 export type TagName =
