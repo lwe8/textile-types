@@ -1,0 +1,31 @@
+{
+  "name": "@lwe8/textile-types",
+  "version": "1.0.0",
+  "description": "Types for Textile",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lwe8/textile-types.git"
+  },
+  "keywords": [],
+  "author": "<phothinmg@disroot.org>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lwe8/textile-types/issues"
+  },
+  "homepage": "https://github.com/lwe8/textile-types#readme",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
